@@ -5,8 +5,7 @@
     <Compile Include="BatteryChargingTemperature.cs"/>
     <Compile Include="BatteryStateOfCharge.cs"/>
     <Compile Include="BatteryChargeRate.cs"/>
-    <Compile Include="BatteryConditions.cs"/>
-    <Compile Include="MessageLanguages.cs"/>
+    <Compile Include="BatteryAbnormalConditions.cs"/>
   </ItemGroup>
   <Target Name="Build">
     <Csc Sources="@(Compile)"/>  
