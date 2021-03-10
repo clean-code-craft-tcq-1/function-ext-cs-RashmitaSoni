@@ -11,8 +11,8 @@ namespace BatteryCharging
         static float highWarningValue = (float)(highBreachValue - (highBreachValue * 0.05));
         public static void CheckChargingTemperature(float chargingTemperature_Celsius)
         {
-            BatteryAbnormalConditions.CheckBreachingPoints(English.chargingTemperature,German.chargingTemperature,chargingTemperature_Celsius, lowBreachValue, highBreachValue);
-            BatteryAbnormalConditions.CheckWarningPoints(English.chargingTemperature, German.chargingTemperature,chargingTemperature_Celsius, lowBreachValue, lowWarningValue, highWarningValue, highBreachValue);
+            BatteryAbnormalConditions.CheckBreachingPoints(chargingTemperature_Celsius, lowBreachValue, highBreachValue);
+            BatteryAbnormalConditions.CheckWarningPoints(chargingTemperature_Celsius, lowBreachValue, lowWarningValue, highWarningValue, highBreachValue);
         }
     }
 }
