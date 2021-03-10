@@ -12,12 +12,19 @@ namespace BatteryCharging
         static string warningMessageInGerman = "Warnung: Annäherung an die Bruchstelle";
         public static void CheckAbnormalConditions(string factorName,float factorValue, float lowBreachValue, float lowWarningValue, float highWarningValue, float highBreachValue)
         {
-            if (factorValue >= lowBreachValue && factorValue <= lowWarningValue) 
+            if (factorValue < lowBreachValue || factorValue > highBreachValue)
             {
-                IsFaulty = false;
-                DisplayAbnormalConditions(factorName, warningMessageInEnglish, warningMessageInGerman);
+                IsFaulty = true;
+                DisplayAbnormalConditions(factorName, breachMessageInEnglish, breachMessageInGerman);
             }
-            if(factorValue >= highWarningValue && factorValue <= highBreachValue)
+            else
+            {
+                CheckLowWarning(factorName, factorValue, lowBreachValue, lowWarningValue);
+            }
+        }
+        public static void CheckLowWarning(string factorName, float factorValue, float lowBreachValue, float lowWarningValue)
+        {
+            if (factorValue >= lowBreachValue && factorValue <= lowWarningValue) 
             {
                 IsFaulty = false;
                 DisplayAbnormalConditions(factorName, warningMessageInEnglish, warningMessageInGerman);
