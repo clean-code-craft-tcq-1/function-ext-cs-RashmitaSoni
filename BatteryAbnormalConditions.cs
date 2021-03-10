@@ -5,30 +5,39 @@ namespace BatteryCharging
 {
     public class BatteryAbnormalConditions
     {
-        static readonly string LowBreach = "Breaching Point is Low";
-        static readonly string HighBreach = "Breaching Point is High";
-        static bool FaultyBattery = false;
-        public static void CheckBreachingPoint(string factorName, float factorValue, float minimumFactorLimit, float maximumFactorLimit)
-        { 
-            if (factorValue < minimumFactorLimit)
+        static bool IsFaulty = false;
+        static string breachMessageInEnglish = "Breaching point reached";
+        static string breachMessageInGerman = "Bruchstelle erreicht";
+        static string lowWarningMessageInEnglish = "Warning: Approaching discharge";
+        static string lowWarningMessageInGerman = "Warnung: Annäherung an die Entladung";
+        static string highWarningMessageInEnglish = "Warning: Approaching charge-peak";
+        static string highWarningMessageInGerman = "Warnung: Annäherung an die Ladungsspitze";
+        public static void CheckAbnormalConditions(string factorName,float factorValue, float lowBreachValue, float lowWarningValue, float highWarningValue, float highBreachValue)
+        {
+            if (factorValue < lowBreachValue || factorValue > highBreachValue)
             {
-                DisplayAbnormalConditions(factorName, minimumFactorLimit, maximumFactorLimit,LowBreach);
-                FaultyBattery = true;
+                IsFaulty = true;
+                DisplayAbnormalConditions(factorName, breachMessageInEnglish, breachMessageInGerman);
             }
-            if (factorValue > maximumFactorLimit)
+            if (factorValue >= lowBreachValue && factorValue <= lowWarningValue)
             {
-                DisplayAbnormalConditions(factorName, minimumFactorLimit, maximumFactorLimit,HighBreach);
-                FaultyBattery = true;
+                IsFaulty = false;
+                DisplayAbnormalConditions(factorName, lowWarningMessageInEnglish, lowWarningMessageInGerman);
+            }
+            if(factorValue >= highWarningValue && factorValue <= highBreachValue)
+            {
+                IsFaulty = false;
+                DisplayAbnormalConditions(factorName, highWarningMessageInEnglish, highWarningMessageInGerman);
             }
         }
-        public static void DisplayAbnormalConditions(string factorName, float minimumFactorLimit, float maximumFactorLimit, string breachPoint)
+        public static void DisplayAbnormalConditions(string factorName, string messageInEnglish, string messageInGerman)
         {
-            Console.WriteLine("{0} is out of range!\nRange is ({1},{2})\n{3}",factorName,minimumFactorLimit,maximumFactorLimit,breachPoint);
+            Console.WriteLine(factorName + " "+ messageInEnglish + "\n" + factorName + " " + messageInGerman);
         }
-        public static bool GetBatteryFaultyStatus()
+        public static bool IsBatteryFaultyStatus()
         {
-            bool faultyBattery = FaultyBattery;
-            return faultyBattery;
+            bool isBatteryFaulty = IsFaulty;
+            return isBatteryFaulty;
         }
     }
 }
