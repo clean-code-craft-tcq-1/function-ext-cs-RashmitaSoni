@@ -6,16 +6,25 @@ namespace BatteryCharging
     public class BatteryAbnormalConditions
     {
         static bool IsFaulty = false;
-        static string breachMessageInEnglish = "Breaching point reached";
-        static string breachMessageInGerman = "Bruchstelle erreicht";
-        static string warningMessageInEnglish = "Warning: Approaching breaching point";
-        static string warningMessageInGerman = "Warnung: Annäherung an die Bruchstelle";
+        static string lowBreachMessageInEnglish = "Breaching point is low";
+        static string lowBreachMessageInGerman = "Der Bruchpunkt ist niedrig";
+        static string highBreachMessageInEnglish = "Breaching point is high";
+        static string highBreachMessageInGerman = "Der Bruchpunkt ist hoch";
+        static string lowWarningMessageInEnglish = "Warning: Approaching discharge";
+        static string lowWarningMessageInGerman = "Warnung: Annäherung an die Entladung";
+        static string highWarningMessageInEnglish = "Warning: Approaching charge-peak";
+        static string highWarningMessageInGerman = "Warnung: Annäherung an die Ladungsspitze";
         public static void CheckAbnormalConditions(string factorName,float factorValue, float lowBreachValue, float lowWarningValue, float highWarningValue, float highBreachValue)
         {
-            if (factorValue < lowBreachValue || factorValue > highBreachValue)
+            if (factorValue < lowBreachValue)
             {
                 IsFaulty = true;
-                DisplayAbnormalConditions(factorName, breachMessageInEnglish, breachMessageInGerman);
+                DisplayAbnormalConditions(factorName, lowBreachMessageInEnglish, lowBreachMessageInGerman);
+            }
+            if(factorValue > highBreachValue)
+            {
+                IsFaulty = true;
+                DisplayAbnormalConditions(factorName, highBreachMessageInEnglish, highBreachMessageInGerman);
             }
             else
             {
@@ -28,7 +37,7 @@ namespace BatteryCharging
             if (factorValue >= lowBreachValue && factorValue <= lowWarningValue) 
             {
                 IsFaulty = false;
-                DisplayAbnormalConditions(factorName, warningMessageInEnglish, warningMessageInGerman);
+                DisplayAbnormalConditions(factorName, lowWarningMessageInEnglish, lowWarningMessageInGerman);
             }
         }
         public static void CheckHighWarning(string factorName, float factorValue, float highBreachValue, float highWarningValue)
@@ -36,7 +45,7 @@ namespace BatteryCharging
             if (factorValue >= highWarningValue && factorValue <= highBreachValue)
             {
                 IsFaulty = false;
-                DisplayAbnormalConditions(factorName, warningMessageInEnglish, warningMessageInGerman);
+                DisplayAbnormalConditions(factorName, highWarningMessageInEnglish, highWarningMessageInGerman);
             }
         }
         public static void DisplayAbnormalConditions(string factorName, string messageInEnglish, string messageInGerman)
