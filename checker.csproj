@@ -2,9 +2,7 @@
   <ItemGroup>
     <Compile Include="Checker.cs"/>
     <Compile Include="BatteryChargingTest.cs"/>
-    <Compile Include="BatteryChargingTemperature.cs"/>
-    <Compile Include="BatteryStateOfCharge.cs"/>
-    <Compile Include="BatteryChargeRate.cs"/>
+    <Compile Include="BatteryChargingFactors.cs"/>
     <Compile Include="BatteryAbnormalConditions.cs"/>
   </ItemGroup>
   <Target Name="Build">
