@@ -11,8 +11,8 @@ namespace BatteryCharging
         static float highWarningValue = (float)(highBreachValue - (highBreachValue * 0.05));
         public static void CheckStateOfCharge(float stateOfCharge_percentage)
         {
-            BatteryConditions.CheckBatteryConditions(English.stateOfCharge,German.stateOfCharge,stateOfCharge_percentage, lowBreachValue, lowWarningValue, highWarningValue, highBreachValue);
-            BatteryConditions.DisplayBatteryFactorsStatus();
+            BatteryAbnormalConditions.CheckBreachingPoints(English.stateOfCharge, German.stateOfCharge,stateOfCharge_percentage, lowBreachValue, highBreachValue);
+            BatteryAbnormalConditions.CheckWarningPoints(English.stateOfCharge, German.stateOfCharge,stateOfCharge_percentage, lowBreachValue, lowWarningValue, highWarningValue, highBreachValue);
         }
     }
 }
