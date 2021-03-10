@@ -17,11 +17,6 @@ namespace BatteryCharging
                 IsFaulty = true;
                 DisplayAbnormalConditions(factorName, breachMessageInEnglish, breachMessageInGerman);
             }
-            if (factorValue >= lowBreachValue && factorValue <= lowWarningValue || factorValue >= highWarningValue && factorValue <= highBreachValue)
-            {
-                IsFaulty = false;
-                DisplayAbnormalConditions(factorName, warningMessageInEnglish, warningMessageInGerman);
-            }
         }
         public static void DisplayAbnormalConditions(string factorName, string messageInEnglish, string messageInGerman)
         {
