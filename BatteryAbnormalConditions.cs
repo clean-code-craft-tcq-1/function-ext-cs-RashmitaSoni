@@ -8,10 +8,8 @@ namespace BatteryCharging
         static bool IsFaulty = false;
         static string breachMessageInEnglish = "Breaching point reached";
         static string breachMessageInGerman = "Bruchstelle erreicht";
-        static string lowWarningMessageInEnglish = "Warning: Approaching discharge";
-        static string lowWarningMessageInGerman = "Warnung: Annäherung an die Entladung";
-        static string highWarningMessageInEnglish = "Warning: Approaching charge-peak";
-        static string highWarningMessageInGerman = "Warnung: Annäherung an die Ladungsspitze";
+        static string warningMessageInEnglish = "Warning: Approaching breaching point";
+        static string warningMessageInGerman = "Warnung: Annäherung an die Bruchstelle";
         public static void CheckAbnormalConditions(string factorName,float factorValue, float lowBreachValue, float lowWarningValue, float highWarningValue, float highBreachValue)
         {
             if (factorValue < lowBreachValue || factorValue > highBreachValue)
@@ -19,15 +17,10 @@ namespace BatteryCharging
                 IsFaulty = true;
                 DisplayAbnormalConditions(factorName, breachMessageInEnglish, breachMessageInGerman);
             }
-            if (factorValue >= lowBreachValue && factorValue <= lowWarningValue)
+            if (factorValue >= lowBreachValue && factorValue <= lowWarningValue || factorValue >= highWarningValue && factorValue <= highBreachValue)
             {
                 IsFaulty = false;
-                DisplayAbnormalConditions(factorName, lowWarningMessageInEnglish, lowWarningMessageInGerman);
-            }
-            if(factorValue >= highWarningValue && factorValue <= highBreachValue)
-            {
-                IsFaulty = false;
-                DisplayAbnormalConditions(factorName, highWarningMessageInEnglish, highWarningMessageInGerman);
+                DisplayAbnormalConditions(factorName, warningMessageInEnglish, warningMessageInGerman);
             }
         }
         public static void DisplayAbnormalConditions(string factorName, string messageInEnglish, string messageInGerman)
