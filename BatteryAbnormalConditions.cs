@@ -20,11 +20,20 @@ namespace BatteryCharging
             else
             {
                 CheckLowWarning(factorName, factorValue, lowBreachValue, lowWarningValue);
+                CheckHighWarning(factorName, factorValue, highBreachValue, highWarningValue);
             }
         }
         public static void CheckLowWarning(string factorName, float factorValue, float lowBreachValue, float lowWarningValue)
         {
             if (factorValue >= lowBreachValue && factorValue <= lowWarningValue) 
+            {
+                IsFaulty = false;
+                DisplayAbnormalConditions(factorName, warningMessageInEnglish, warningMessageInGerman);
+            }
+        }
+        public static void CheckHighWarning(string factorName, float factorValue, float highBreachValue, float highWarningValue)
+        {
+            if (factorValue >= highWarningValue && factorValue <= highBreachValue)
             {
                 IsFaulty = false;
                 DisplayAbnormalConditions(factorName, warningMessageInEnglish, warningMessageInGerman);
