@@ -1,13 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace BatteryCharging
 {
     public class BatteryAbnormalConditions
     {
-        public static bool CheckAbnormalConditions(string factorName,float factorValue, float lowBreachValue, float lowWarningValue, float highWarningValue, float highBreachValue)
+        public static List<Tuple<string,string>> factorsConditions = new List<Tuple<string, string>>();
+        public static bool CheckAbnormalConditions(string factorName, float factorValue, float lowBreachValue, float lowWarningValue, float highWarningValue, float highBreachValue)
         {
-            if (IsLowBreach(factorName,factorValue, lowBreachValue) || IsHighBreach(factorName,factorValue, highBreachValue))
+            if (IsLowBreach(factorName, factorValue, lowBreachValue) || IsHighBreach(factorName, factorValue, highBreachValue))
             {
                 return true;
             }
@@ -20,7 +22,7 @@ namespace BatteryCharging
         {
             if (factorValue < lowBreachValue)
             {
-                DisplayAbnormalConditions(factorName, Messages.lowBreachMessageInEnglish, Messages.lowBreachMessageInGerman);
+                factorsConditions.Add(new Tuple<string, string>(factorName + " " + Messages.lowBreachMessageInEnglish, factorName + " " + Messages.lowBreachMessageInGerman));
                 return true;
             }
             return false;
@@ -29,28 +31,24 @@ namespace BatteryCharging
         {
             if (factorValue > highBreachValue)
             {
-                DisplayAbnormalConditions(factorName, Messages.highBreachMessageInEnglish, Messages.highBreachMessageInGerman);
+                factorsConditions.Add(new Tuple<string, string>(factorName + " " + Messages.highBreachMessageInEnglish, factorName + " " + Messages.highBreachMessageInGerman));
                 return true;
             }
             return false;
         }
         public static void CheckLowWarning(string factorName, float factorValue, float lowBreachValue, float lowWarningValue)
         {
-            if (factorValue >= lowBreachValue && factorValue <= lowWarningValue) 
+            if (factorValue >= lowBreachValue && factorValue <= lowWarningValue)
             {
-                DisplayAbnormalConditions(factorName, Messages.lowWarningMessageInEnglish, Messages.lowWarningMessageInGerman);
+                factorsConditions.Add(new Tuple<string, string>(factorName + " " + Messages.lowWarningMessageInEnglish, factorName + " " + Messages.lowWarningMessageInGerman));
             }
         }
         public static void CheckHighWarning(string factorName, float factorValue, float highBreachValue, float highWarningValue)
         {
             if (factorValue >= highWarningValue && factorValue <= highBreachValue)
             {
-                DisplayAbnormalConditions(factorName, Messages.highWarningMessageInEnglish, Messages.highWarningMessageInGerman);
+                factorsConditions.Add(new Tuple<string, string>(factorName + " " + Messages.highWarningMessageInEnglish, factorName + " " + Messages.highWarningMessageInGerman));
             }
-        }
-        public static void DisplayAbnormalConditions(string factorName, string messageInEnglish, string messageInGerman)
-        {
-            Console.WriteLine(factorName + " "+ messageInEnglish + "\n" + factorName + " " + messageInGerman);
         }
     }
 }
