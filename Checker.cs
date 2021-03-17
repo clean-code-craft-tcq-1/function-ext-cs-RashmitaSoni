@@ -7,8 +7,10 @@ namespace BatteryCharging
     {
         public static int Main()
         {
+            IReporter _reporterRef = new BatteryReporter();
+            BatteryChargingTest _batteryTester = new BatteryChargingTest(_reporterRef);
             BatteryChargingTest.BatteryChargingTestFactors(25, 70, 0.7f);
-            BatteryChargingTest.BatteryChargingTestFactors(50, 85, 0.0f);
+            BatteryChargingTest.BatteryChargingTestFactors(50, 23, 0.0f);
             return 0;
         }
     }
