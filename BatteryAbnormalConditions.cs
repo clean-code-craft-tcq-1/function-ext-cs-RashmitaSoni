@@ -16,13 +16,12 @@ namespace BatteryCharging
             CheckLowWarning(factorName, factorValue, lowBreachValue, lowWarningValue);
             CheckHighWarning(factorName, factorValue, highBreachValue, highWarningValue);
             return false;
-
         }
         public static bool IsLowBreach(string factorName, float factorValue, float lowBreachValue)
         {
             if (factorValue < lowBreachValue)
             {
-                factorsConditions.Add(new Tuple<string, string>(factorName + " " + Messages.lowBreachMessageInEnglish, factorName + " " + Messages.lowBreachMessageInGerman));
+                factorsConditions.Add(new Tuple<string, string>(factorName + " " + EnglishLanguage.lowBreachMessage, factorName + " " + GermanLanguage.lowBreachMessage));
                 return true;
             }
             return false;
@@ -31,7 +30,7 @@ namespace BatteryCharging
         {
             if (factorValue > highBreachValue)
             {
-                factorsConditions.Add(new Tuple<string, string>(factorName + " " + Messages.highBreachMessageInEnglish, factorName + " " + Messages.highBreachMessageInGerman));
+                factorsConditions.Add(new Tuple<string, string>(factorName + " " + EnglishLanguage.highBreachMessage, factorName + " " + GermanLanguage.highBreachMessage));
                 return true;
             }
             return false;
@@ -40,14 +39,14 @@ namespace BatteryCharging
         {
             if (factorValue >= lowBreachValue && factorValue <= lowWarningValue)
             {
-                factorsConditions.Add(new Tuple<string, string>(factorName + " " + Messages.lowWarningMessageInEnglish, factorName + " " + Messages.lowWarningMessageInGerman));
+                factorsConditions.Add(new Tuple<string, string>(factorName + " " + EnglishLanguage.lowWarningMessage, factorName + " " + GermanLanguage.lowWarningMessage));
             }
         }
         public static void CheckHighWarning(string factorName, float factorValue, float highBreachValue, float highWarningValue)
         {
             if (factorValue >= highWarningValue && factorValue <= highBreachValue)
             {
-                factorsConditions.Add(new Tuple<string, string>(factorName + " " + Messages.highWarningMessageInEnglish, factorName + " " + Messages.highWarningMessageInGerman));
+                factorsConditions.Add(new Tuple<string, string>(factorName + " " + EnglishLanguage.highWarningMessage, factorName + " " + GermanLanguage.highWarningMessage));
             }
         }
     }
