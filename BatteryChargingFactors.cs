@@ -21,15 +21,18 @@ namespace BatteryCharging
         public static float minimumChargeRateWarning = (float)(minimumChargeRate_CRate + (maximumChargeRate_CRate * 0.05));
         public static float maximumChargeRateWarning = (float)(maximumChargeRate_CRate - (maximumChargeRate_CRate * 0.05));
     }
-    public class Messages
+    public class GermanLanguage
     {
-        public static string lowBreachMessageInEnglish = "Breaching point is low";
-        public static string lowBreachMessageInGerman = "Der Bruchpunkt ist niedrig";
-        public static string highBreachMessageInEnglish = "Breaching point is high";
-        public static string highBreachMessageInGerman = "Der Bruchpunkt ist hoch";
-        public static string lowWarningMessageInEnglish = "Warning: Approaching discharge";
-        public static string lowWarningMessageInGerman = "Warnung: Annäherung an die Entladung";
-        public static string highWarningMessageInEnglish = "Warning: Approaching charge-peak";
-        public static string highWarningMessageInGerman = "Warnung: Annäherung an die Ladungsspitze";
+        public static string lowBreachMessage = "Der Bruchpunkt ist niedrig";
+        public static string highBreachMessage = "Der Bruchpunkt ist hoch";
+        public static string lowWarningMessage = "Warnung: Annäherung an die Entladung";
+        public static string highWarningMessage = "Warnung: Annäherung an die Ladungsspitze";
+    }
+    public class EnglishLanguage
+    {
+        public static string lowBreachMessage = "Breaching point is low";
+        public static string highBreachMessage = "Breaching point is high";
+        public static string lowWarningMessage = "Warning: Approaching discharge";
+        public static string highWarningMessage = "Warning: Approaching charge-peak";
     }
 }
