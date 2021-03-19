@@ -20,7 +20,17 @@ namespace BatteryCharging
                 BatteryAbnormalConditions.CheckAbnormalConditions(BatteryChargingFactors.ChargingTemperature, chargingTemperature_Celsius, BatteryChargingFactors.minimumChargingTemprature_Celsius, BatteryChargingFactors.minimumChargingTemperatureWarning, BatteryChargingFactors.maximumChargingTemperatureWarning, BatteryChargingFactors.maximumChargingTemprature_Celsius)
                 | BatteryAbnormalConditions.CheckAbnormalConditions(BatteryChargingFactors.StateOfCharge, stateOfCharge_percentage, BatteryChargingFactors.minimumStateOfCharge_Percentage, BatteryChargingFactors.minimumStateOfChargeWarning, BatteryChargingFactors.maximumStateOfChargeWarning, BatteryChargingFactors.maximumStateOfCharge_Percentage)
                 | BatteryAbnormalConditions.CheckAbnormalConditions(BatteryChargingFactors.ChargeRate, chargeRate_CRate, BatteryChargingFactors.minimumChargeRate_CRate, BatteryChargingFactors.minimumChargeRateWarning, BatteryChargingFactors.maximumChargeRate_CRate, BatteryChargingFactors.maximumChargeRate_CRate);
-            _batteryReporter.DisplayBatteryStatus(IsBatteryFaulty, BatteryAbnormalConditions.factorsConditions);
+
+            if (IsBatteryFaulty)
+            {
+                BatteryAbnormalConditions.factorsConditions.Add(new Tuple<string, string>("Battery is faulty", "Batterie ist defekt"));
+            }
+            else
+            {
+                BatteryAbnormalConditions.factorsConditions.Add(new Tuple<string, string>("Battery is OK", "Batterie ist in Ordnung"));
+            }
+
+            _batteryReporter.DisplayBatteryStatus(BatteryAbnormalConditions.factorsConditions);
         }
    }
 }
