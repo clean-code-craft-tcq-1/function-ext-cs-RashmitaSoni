@@ -4,7 +4,7 @@
     <Compile Include="BatteryChargingTest.cs"/>
     <Compile Include="BatteryChargingFactors.cs"/>
     <Compile Include="BatteryAbnormalConditions.cs"/>
-    <Compile Include="BatteryReporter.cs"/>
+    <Compile Include="BatteryMeasuresReporter.cs"/>
   </ItemGroup>
   <Target Name="Build">
     <Csc Sources="@(Compile)"/>  
