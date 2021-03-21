@@ -9,8 +9,8 @@ namespace BatteryCharging
         {
             IReporter _reporterRef = new BatteryMeasuresReporter();
             BatteryChargingTest _batteryTester = new BatteryChargingTest(_reporterRef);
-            BatteryChargingTest.BatteryChargingTestFactors(25, 70, 0.7f);
-            BatteryChargingTest.BatteryChargingTestFactors(50, 23, 0.0f);
+            Debug.Assert(BatteryChargingTest.BatteryChargingTestFactors(25, 65, 0.7f));
+            Debug.Assert(BatteryChargingTest.BatteryChargingTestFactors(50, 23, 0.0f));
             return 0;
         }
     }
